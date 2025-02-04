@@ -1,6 +1,11 @@
 import random
 import datetime
 import requests
+import os
+
+numero = os.getenv("WHATSAPP_NUMBER")
+api_key = os.getenv("CALLMEBOT_APIKEY")
+
 
 # 📌 MORTIFICACIONES FIJAS POR DÍA
 mortificaciones_fijas = {
@@ -53,8 +58,7 @@ for i, mortificacion in enumerate(mortificaciones_hoy, 1):
     mensaje += f"👉 {mortificacion}\n"
 
 # 📲 ENVÍO DEL MENSAJE A WHATSAPP (CallMeBot)
-numero = "+573058180027"  # 🔹 Cambia esto por tu número de WhatsApp
-api_key = "5298266"  # 🔹 Obtén una API Key en CallMeBot.com
+
 url = f"https://api.callmebot.com/whatsapp.php?phone={numero}&text={mensaje}&apikey={api_key}"
 
 requests.get(url)  # Enviar mensaje
